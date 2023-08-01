@@ -6,14 +6,24 @@ extension Log on Object {
 }
 
 abstract class CanRun {
-  void run();
+  @mustCallSuper
+  void run() {
+    "CanRun's run function is called".log();
+  }
 }
 
 class Cat extends CanRun {
   @override
   void run() {
-    // TODO: implement run
+    super.run();
+    'Cat running'.log();
   }
+}
+
+void testIt() {
+  'testIt'.log();
+  final cat = Cat();
+  cat.run();
 }
 
 void main() {
@@ -33,6 +43,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    testIt();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Page'),
